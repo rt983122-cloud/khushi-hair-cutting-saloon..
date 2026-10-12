@@ -1,0 +1,135 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+HTML = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khushi Hair Cutting Saloon</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #090909, #292020, #000000);
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    padding: 35px 20px;
+    border: 2px solid gold;
+    border-radius: 22px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+h1 {
+    color: gold;
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+button {
+    background: linear-gradient(45deg, #ffd700, #ff9900);
+    color: black;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 45px;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #d4a900;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#welcome {
+    display: none;
+    animation: appear 1s ease;
+}
+
+#welcome h2 {
+    color: white;
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+#welcome h1 {
+    font-size: 32px;
+    line-height: 1.5;
+    text-shadow: 0 0 15px gold;
+}
+
+.scissors {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <div id="start">
+        <div class="scissors">✂️</div>
+        <h1>KHUSHI SALOON</h1>
+        <p style="margin-bottom:30px;">
+            Welcome to our Hair Cutting Saloon
+        </p>
+        <button onclick="startWebsite()">START</button>
+    </div>
+
+    <div id="welcome">
+        <div class="scissors">✂️💈✂️</div>
+        <h2>🙏 WELCOME TO 🙏</h2>
+        <h1>KHUSHI HAIR CUTTING SALOON</h1>
+        <p style="color:gold; margin-top:20px;">
+            Your Style, Our Passion!
+        </p>
+    </div>
+
+</div>
+
+<script>
+function startWebsite() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("welcome").style.display = "block";
+}
+</script>
+</body>
+</html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(HTML)
+
+if __name__ == "__main__":
+    app.run(debug=True)
